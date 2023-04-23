@@ -39,6 +39,10 @@ class MessageConsumerIntegrationTest {
   private KafkaTemplate<String, String> kafkaTemplate;
   @Autowired
   private MessageConsumer messageConsumer;
+
+  @Autowired
+  private ObjectMapper objectMapper;
+
   private final BlockingQueue<ConsumerRecord<String, String>> messages = new LinkedBlockingQueue<>();
 
   @Test
@@ -47,7 +51,6 @@ class MessageConsumerIntegrationTest {
     ReflectionTestUtils.setField(messageConsumer, "logger", spiedLogger);
 
     PriceMessage priceMessage = priceMessageFixture();
-    ObjectMapper objectMapper = new ObjectMapper();
 
     objectMapper.registerModule(new JavaTimeModule());
     objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
