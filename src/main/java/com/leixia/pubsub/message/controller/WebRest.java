@@ -21,9 +21,9 @@ public class WebRest {
     this.messagePublisher = messagePublisher;
   }
 
-  @GetMapping(value = "/handlePrice", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/handlePrice", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<SuccessResponse> handleGetCall() throws JsonProcessingException {
-    String ticket = messagePublisher.publish();
+    final String ticket = messagePublisher.publish();
     SuccessResponse successResponse = new SuccessResponse();
     successResponse.setMessage("price message published");
     successResponse.setRef(ticket);
