@@ -23,23 +23,23 @@ public class MmaMovementDocumentKafkaInterceptor implements RecordInterceptor<St
     }
 
     @Override
-    public ConsumerRecord<String, String> intercept(ConsumerRecord<String, String> record, Consumer<String, String> consumer) {
-        return RecordInterceptor.super.intercept(record, consumer);
+    public ConsumerRecord<String, String> intercept(ConsumerRecord<String, String> consumerRecord, Consumer<String, String> consumer) {
+        return RecordInterceptor.super.intercept(consumerRecord, consumer);
     }
 
     @Override
-    public void success(ConsumerRecord<String, String> record, Consumer<String, String> consumer) {
-        RecordInterceptor.super.success(record, consumer);
+    public void success(ConsumerRecord<String, String> consumerRecord, Consumer<String, String> consumer) {
+        RecordInterceptor.super.success(consumerRecord, consumer);
     }
 
     @Override
-    public void failure(ConsumerRecord<String, String> record, Exception exception, Consumer<String, String> consumer) {
-        RecordInterceptor.super.failure(record, exception, consumer);
+    public void failure(ConsumerRecord<String, String> consumerRecord, Exception exception, Consumer<String, String> consumer) {
+        RecordInterceptor.super.failure(consumerRecord, exception, consumer);
     }
 
     @Override
-    public void afterRecord(ConsumerRecord<String, String> record, Consumer<String, String> consumer) {
-        RecordInterceptor.super.afterRecord(record, consumer);
+    public void afterRecord(ConsumerRecord<String, String> consumerRecord, Consumer<String, String> consumer) {
+        RecordInterceptor.super.afterRecord(consumerRecord, consumer);
     }
 
     @Override
