@@ -12,6 +12,7 @@ import java.util.UUID;
 
 public class MmaMovementDocumentKafkaInterceptor implements RecordInterceptor<String, String> {
     private static final String X_CORRELATION_ID = "x-correlation-id";
+
     @Override
     public ConsumerRecord<String, String> intercept(ConsumerRecord<String, String> consumerRecord) {
         boolean found = Arrays.stream(consumerRecord.headers().toArray()).anyMatch(h -> X_CORRELATION_ID.equalsIgnoreCase(h.key()));
