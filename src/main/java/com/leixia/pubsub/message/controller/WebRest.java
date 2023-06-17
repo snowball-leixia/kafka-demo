@@ -35,4 +35,16 @@ public class WebRest {
         return ResponseEntity.ok().body(successResponse);
     }
 
+    @GetMapping(value = "/success", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> success() {
+        kpiMetricsService.recordSuccess();
+        return ResponseEntity.ok("ok");
+    }
+
+    @GetMapping(value = "/fail", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> fail() {
+        kpiMetricsService.recordFail();
+        return ResponseEntity.ok("fail");
+    }
 }
+

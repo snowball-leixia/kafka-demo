@@ -21,8 +21,11 @@ public class MockKafkaProducer {
 
     @Scheduled(fixedRate = 10000)
     public void publishMessageOnFixRate() {
-        final String topic = "price-topic";
-        kafkaTemplate.send("{}", topic);
+        boolean enabled = false;
+        if (enabled) {
+            final String topic = "price-topic";
+            kafkaTemplate.send("{}", topic);
+        }
     }
 
 

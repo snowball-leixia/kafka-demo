@@ -56,12 +56,4 @@ public class KafkaConfiguration {
         return new KafkaTemplate<>(producerFactory);
     }
 
-    @Bean
-    @Primary
-    public NewTopic newTopic() {
-        return TopicBuilder.name("price-topic")
-                .compact()
-                .build();
-    }
-
 }

@@ -12,15 +12,18 @@ public class KpiMetricsService {
 
     public KpiMetricsService(MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
-        this.meterRegistry.config().commonTags(List.of(Tag.of("service", "kafka-demo")));
+        this.meterRegistry.config()
+                .commonTags(List.of(
+                        Tag.of("service", "demo-service"),
+                        Tag.of("region", "eu-west-2")));
     }
 
     public void recordSuccess() {
-        meterRegistry.counter("http-request-status", "success", "request-success").increment();
+        meterRegistry.counter("customer.request.status", "status", "request-success").increment();
     }
 
     public void recordFail() {
-        meterRegistry.counter("http-request-status", "fail", "request-fail").increment();
+        meterRegistry.counter("customer.request.status", "status", "request-fail").increment();
     }
 }
 

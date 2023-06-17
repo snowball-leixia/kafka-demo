@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: kafka:29092
+      SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS: kafka:29092
+    networks:
+      local-dev:
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -40,7 +55,6 @@ services:
       - "9090:9090"
     networks:
       - local-dev
-
 
   grafana:
     image: grafana/grafana
