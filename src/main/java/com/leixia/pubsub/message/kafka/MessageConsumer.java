@@ -11,18 +11,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageConsumer {
-  private static Logger logger = LoggerFactory.getLogger(MessageConsumer.class);
-  private final KafkaTemplate<String, String> kafkaTemplate;
-  private final KafkaTopicProperties topicProperties;
-  private String ip = "127.0.0.1";
-  public MessageConsumer(KafkaTemplate<String, String> kafkaTemplate, KafkaTopicProperties properties) {
-    this.kafkaTemplate = kafkaTemplate;
-    this.topicProperties = properties;
-  }
+    private static Logger logger = LoggerFactory.getLogger(MessageConsumer.class);
+    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTopicProperties topicProperties;
+    private String ip = "127.0.0.1";
 
-  @KafkaListener(topics = {"price-topic"})
-  public void consume(ConsumerRecord<String, String> consumerRecord) {
-    logger.info("message received {}", consumerRecord.value());
-    kafkaTemplate.send("outbound-price-topic", "bye");
-  }
+    public MessageConsumer(KafkaTemplate<String, String> kafkaTemplate, KafkaTopicProperties properties) {
+        this.kafkaTemplate = kafkaTemplate;
+        this.topicProperties = properties;
+    }
+
+    @KafkaListener(topics = {"price-topic"})
+    public void consume(ConsumerRecord<String, String> consumerRecord) {
+        logger.info("message received {}", consumerRecord.value());
+        kafkaTemplate.send("outbound-price-topic", "bye");
+    }
 }
