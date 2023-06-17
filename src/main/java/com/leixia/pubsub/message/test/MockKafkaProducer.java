@@ -11,22 +11,22 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class MockKafkaProducer {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
-    private final ObjectMapper objectMapper;
+  private final KafkaTemplate<String, String> kafkaTemplate;
+  private final ObjectMapper objectMapper;
 
-    public MockKafkaProducer(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
-        this.kafkaTemplate = kafkaTemplate;
-        this.objectMapper = objectMapper;
-    }
+  public MockKafkaProducer(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+    this.kafkaTemplate = kafkaTemplate;
+    this.objectMapper = objectMapper;
+  }
 
-    @Scheduled(fixedRate = 10000)
-    public void publishMessageOnFixRate() {
-        boolean enabled = false;
-        if (enabled) {
-            final String topic = "price-topic";
-            kafkaTemplate.send("{}", topic);
-        }
+  @Scheduled(fixedRate = 10000)
+  public void publishMessageOnFixRate() {
+    boolean enabled = false;
+    if (enabled) {
+      final String topic = "price-topic";
+      kafkaTemplate.send("{}", topic);
     }
+  }
 
 
 }

@@ -16,35 +16,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/v1")
 public class WebRest {
 
-    private final MessagePublisher messagePublisher;
-    private final KpiMetricsService kpiMetricsService;
+  private final MessagePublisher messagePublisher;
+  private final KpiMetricsService kpiMetricsService;
 
-    public WebRest(MessagePublisher messagePublisher, KpiMetricsService kpiMetricsService) {
-        this.messagePublisher = messagePublisher;
-        this.kpiMetricsService = kpiMetricsService;
-    }
+  public WebRest(MessagePublisher messagePublisher, KpiMetricsService kpiMetricsService) {
+    this.messagePublisher = messagePublisher;
+    this.kpiMetricsService = kpiMetricsService;
+  }
 
-    @GetMapping(value = "/handlePrice", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SuccessResponse> handleGeNMtCall() throws JsonProcessingException {
-        final String ticket = messagePublisher.publish();
-        SuccessResponse successResponse = new SuccessResponse();
-        successResponse.setMessage("price message published");
-        successResponse.setRef(ticket);
-        successResponse.setStatusCode(HttpStatus.OK.value());
-        kpiMetricsService.recordSuccess();
-        return ResponseEntity.ok().body(successResponse);
-    }
+  @GetMapping(value = "/handlePrice", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<SuccessResponse> handleGeNMtCall() throws JsonProcessingException {
+    final String ticket = messagePublisher.publish();
+    SuccessResponse successResponse = new SuccessResponse();
+    successResponse.setMessage("price message published");
+    successResponse.setRef(ticket);
+    successResponse.setStatusCode(HttpStatus.OK.value());
+    kpiMetricsService.recordSuccess();
+    return ResponseEntity.ok().body(successResponse);
+  }
 
-    @GetMapping(value = "/success", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> success() {
-        kpiMetricsService.recordSuccess();
-        return ResponseEntity.ok("ok");
-    }
+  @GetMapping(value = "/success", produces = MediaType.TEXT_PLAIN_VALUE)
+  public ResponseEntity<String> success() {
+    kpiMetricsService.recordSuccess();
+    return ResponseEntity.ok("ok");
+  }
 
-    @GetMapping(value = "/fail", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> fail() {
-        kpiMetricsService.recordFail();
-        return ResponseEntity.ok("fail");
-    }
+  @GetMapping(value = "/fail", produces = MediaType.TEXT_PLAIN_VALUE)
+  public ResponseEntity<String> fail() {
+    kpiMetricsService.recordFail();
+    return ResponseEntity.ok("fail");
+  }
 }
 

@@ -8,22 +8,22 @@ import java.util.List;
 
 @Service
 public class KpiMetricsService {
-    private final MeterRegistry meterRegistry;
+  private final MeterRegistry meterRegistry;
 
-    public KpiMetricsService(MeterRegistry meterRegistry) {
-        this.meterRegistry = meterRegistry;
-        this.meterRegistry.config()
-                .commonTags(List.of(
-                        Tag.of("service", "demo-service"),
-                        Tag.of("region", "eu-west-2")));
-    }
+  public KpiMetricsService(MeterRegistry meterRegistry) {
+    this.meterRegistry = meterRegistry;
+    this.meterRegistry.config()
+          .commonTags(List.of(
+                Tag.of("service", "demo-service"),
+                Tag.of("region", "eu-west-2")));
+  }
 
-    public void recordSuccess() {
-        meterRegistry.counter("customer.request.status", "status", "request-success").increment();
-    }
+  public void recordSuccess() {
+    meterRegistry.counter("customer.request.status", "status", "request-success").increment();
+  }
 
-    public void recordFail() {
-        meterRegistry.counter("customer.request.status", "status", "request-fail").increment();
-    }
+  public void recordFail() {
+    meterRegistry.counter("customer.request.status", "status", "request-fail").increment();
+  }
 }
 

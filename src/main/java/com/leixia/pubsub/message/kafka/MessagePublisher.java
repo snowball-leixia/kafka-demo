@@ -4,9 +4,10 @@ package com.leixia.pubsub.message.kafka;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leixia.pubsub.message.kafka.model.PriceMessage;
-import java.util.UUID;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 public class MessagePublisher {

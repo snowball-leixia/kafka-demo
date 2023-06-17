@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MetricsConfiguration {
-    @Bean
-    public MeterRegistry getMeterRegistry() {
-        return new SimpleMeterRegistry();
-    }
+  @Bean
+  public MeterRegistry getMeterRegistry() {
+    return new SimpleMeterRegistry();
+  }
 }
