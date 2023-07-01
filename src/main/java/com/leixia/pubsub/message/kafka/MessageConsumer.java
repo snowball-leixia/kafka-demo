@@ -18,7 +18,7 @@ public class MessageConsumer {
     this.kafkaTemplate = kafkaTemplate;
   }
 
-  @KafkaListener(topics = {"price-topic"})
+  @KafkaListener(topics = {"price-topic"}, autoStartup = "false")
   public void consume(ConsumerRecord<String, String> consumerRecord) {
     logger.info("message received {}", consumerRecord.value());
     kafkaTemplate.send("outbound-price-topic", "bye");

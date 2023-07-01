@@ -3,6 +3,7 @@ package com.leixia.pubsub.message.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.leixia.pubsub.message.http.SuccessResponse;
+import com.leixia.pubsub.message.kafka.KafkaListenerAdmin;
 import com.leixia.pubsub.message.kafka.MessagePublisher;
 import com.leixia.pubsub.message.kpi.KpiMetricsService;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,12 @@ public class WebRest {
   private final MessagePublisher messagePublisher;
   private final KpiMetricsService kpiMetricsService;
 
-  public WebRest(MessagePublisher messagePublisher, KpiMetricsService kpiMetricsService) {
+  private final KafkaListenerAdmin kafkaListenerAdmin;
+
+  public WebRest(MessagePublisher messagePublisher, KpiMetricsService kpiMetricsService, KafkaListenerAdmin kafkaListenerAdmin) {
     this.messagePublisher = messagePublisher;
     this.kpiMetricsService = kpiMetricsService;
+    this.kafkaListenerAdmin = kafkaListenerAdmin;
   }
 
   @GetMapping(value = "/handlePrice", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,6 +47,7 @@ public class WebRest {
 
   @GetMapping(value = "/fail", produces = MediaType.TEXT_PLAIN_VALUE)
   public ResponseEntity<String> fail() {
+    kafkaListenerAdmin.startListener();
     kpiMetricsService.recordFail();
     return ResponseEntity.ok("fail");
   }
