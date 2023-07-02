@@ -26,3 +26,10 @@ management:
     export:
       prometheus:
         enabled: true
+
+kafka:
+  listener:
+    order:
+      autoStart: false
+    price:
+      autoStart: false
