@@ -20,7 +20,7 @@ class KafkaListenerAdminTest {
     KafkaListenerEndpointRegistry registry = mock(KafkaListenerEndpointRegistry.class);
     KafkaListenerAdmin kafkaListenerAdmin = new KafkaListenerAdmin(registry);
 
-    kafkaListenerAdmin.startListener();
+    kafkaListenerAdmin.startListeners();
 
     verify(registry).start();
     assertThat(kafkaListenerAdmin.isStarted()).isTrue();
@@ -32,7 +32,7 @@ class KafkaListenerAdminTest {
     KafkaListenerEndpointRegistry registry = mock(KafkaListenerEndpointRegistry.class);
     KafkaListenerAdmin kafkaListenerAdmin = new KafkaListenerAdmin(registry);
 
-    kafkaListenerAdmin.stopListener();
+    kafkaListenerAdmin.stopListeners();
 
     verify(registry).stop();
     assertThat(kafkaListenerAdmin.isStarted()).isFalse();

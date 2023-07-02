@@ -18,9 +18,15 @@ public class MessageConsumer {
     this.kafkaTemplate = kafkaTemplate;
   }
 
-  @KafkaListener(topics = {"price-topic"}, autoStartup = "false")
-  public void consume(ConsumerRecord<String, String> consumerRecord) {
-    logger.info("message received {}", consumerRecord.value());
+  @KafkaListener(topics = {"price-topic"}, autoStartup = "false", concurrency = "5", groupId = "price-group")
+  public void consumePrice(ConsumerRecord<String, String> consumerRecord) {
+    logger.info("Price message received {}", consumerRecord.value());
     kafkaTemplate.send("outbound-price-topic", "bye");
+  }
+
+  @KafkaListener(topics = "order-topic", autoStartup = "false", concurrency = "5", groupId = "order-group")
+  public void consumeOrder(ConsumerRecord<String, String> consumerRecord) {
+    logger.info("Order message received {}", consumerRecord.value());
+    kafkaTemplate.send("outbound-order-topic", "hello");
   }
 }

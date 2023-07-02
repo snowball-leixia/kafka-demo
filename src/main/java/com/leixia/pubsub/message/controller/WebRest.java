@@ -47,7 +47,7 @@ public class WebRest {
 
   @GetMapping(value = "/fail", produces = MediaType.TEXT_PLAIN_VALUE)
   public ResponseEntity<String> fail() {
-    kafkaListenerAdmin.startListener();
+    kafkaListenerAdmin.startListeners();
     kpiMetricsService.recordFail();
     return ResponseEntity.ok("fail");
   }
