@@ -33,3 +33,9 @@ kafka:
       autoStart: false
     price:
       autoStart: false
+
+togglz:
+  console:
+    path: /togglz-console
+    enabled: true
+  enabled: true
