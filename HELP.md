@@ -16,4 +16,9 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
-new branch
+new branch 1
+new branch 2
+
+for LINE in $(cat "$commits"); do echo "$LINE"; done
+
+for i in `seq 1 10`; do echo $i; done
