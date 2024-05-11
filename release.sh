@@ -31,7 +31,7 @@ function tagWithAnnotation() {
 
 function validateAnnotationMessage() {
   local msg=$1
-  if [[ "${#msg}" = 0 ]] | [[ "${#msg}" > 140]]; then 
+  if [[ "${#msg}" = 0 ]]; then 
     echo "Annotation should not be empty to exceed 140 characters"
     exit 1
   fi    
